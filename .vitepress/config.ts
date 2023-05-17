@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress'
+import { DefaultTheme } from 'vitepress/types/default-theme';
 import fs from 'node:fs'
 
 const mdPattern = /\.md$/;
@@ -6,12 +7,30 @@ function isMd(file: string) {
   return mdPattern.test(file);
 }
 
-function subItems(dir: string) {
-  return fs.readdirSync(dir).filter((file) => {
-    return isMd(file)
-  }).map((file) => {
-    return { text: file.replace(mdPattern, ''), link: `/${dir}/${file}` }
-  })
+function subItems(dir: string): DefaultTheme.SidebarItem[] {
+  const entries = fs.readdirSync(dir).filter((file) => {
+    const stat = fs.statSync(dir);
+    return (stat.isFile() && isMd(file)) || stat.isDirectory()
+  });
+
+  const items: DefaultTheme.SidebarItem[] = [];
+  for (const entry of entries) {
+    if (entry == 'index.md') {
+      continue
+    }
+    const path = `${dir}/${entry}`;
+    const stat = fs.statSync(path);
+    if (stat.isDirectory()) {
+      const item: DefaultTheme.SidebarItem = { text: entry, link: `/${path}/index.md`, items: [] }
+      item.items = subItems(path)
+      items.push(item)
+    } else {
+      const item = { text: entry.replace(mdPattern, ''), link: `/${path}` }
+      items.push(item)
+    }
+  }
+
+  return items
 }
 
 // https://vitepress.dev/reference/site-config
@@ -22,13 +41,13 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Docs', link: '/docs/' }
+      { text: 'Docs', link: '/docs/2023/index' },
     ],
 
     sidebar: [
       {
-        text: '2023',
-        items: subItems('docs/2023')
+        text: 'docs',
+        items: subItems('docs')
       }
     ],
 
