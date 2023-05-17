@@ -48,6 +48,11 @@ export default defineConfig({
       {
         text: 'docs',
         items: subItems('docs')
+      },
+      {
+        text: 'books',
+        link: '/books/index.md',
+        items: subItems('books')
       }
     ],
 
