@@ -42,6 +42,7 @@ export default defineConfig({
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Docs', link: '/docs/2023/index' },
+      { text: 'Books', link: '/books/index' },
     ],
 
     sidebar: [

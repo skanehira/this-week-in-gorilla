@@ -8,4 +8,7 @@ hero:
     - theme: brand
       text: This Week
       link: /docs/2023/0503
+    - theme: brand
+      text: Books
+      link: /books/index
 ---
