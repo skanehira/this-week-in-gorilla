@@ -18,6 +18,9 @@ head:
   - - meta
     - property: og:url
       content: https://skanehira.github.io/this-week-in-gorilla/books/riakuto4pt2-221101.html
+
+date: 2023-05-18
+
 ---
 
 # りあクト！ TypeScriptで始めるつらくないReact開発 第4版【② React基礎編】 を読んだ
