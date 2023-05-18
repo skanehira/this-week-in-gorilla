@@ -2,10 +2,22 @@
 head:
   - - meta
     - name: twitter:card
+      content: summary_large_image
+  - - meta
+    - property: og:site_name
+      content: This Week in Gorilla
+  - - meta
+    - property: og:description
       content: りあクト！ TypeScriptで始めるつらくないReact開発 第4版【② React基礎編】 を読んだ
   - - meta
-    - name: twitter:site
-      content: https://skanehira.github.io/this-week-in-gorilla
+    - property: og:title
+      content: りあクト！ TypeScriptで始めるつらくないReact開発 第4版【② React基礎編】 を読んだ
+  - - meta
+    - property: og:image
+      content: https://i.gyazo.com/3472444dd190c9a9e9f59d17c0fca8a2.png
+  - - meta
+    - property: og:url
+      content: https://skanehira.github.io/this-week-in-gorilla/books/riakuto4pt2-221101.html
 ---
 
 # りあクト！ TypeScriptで始めるつらくないReact開発 第4版【② React基礎編】 を読んだ
