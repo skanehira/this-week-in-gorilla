@@ -2,13 +2,13 @@
 head:
   - - meta
     - name: twitter:card
-      content: あクト！ TypeScriptで始めるつらくないReact開発 第4版【② React基礎編】 を読んだ
+      content: りあクト！ TypeScriptで始めるつらくないReact開発 第4版【② React基礎編】 を読んだ
   - - meta
     - name: twitter:site
       content: https://skanehira.github.io/this-week-in-gorilla
 ---
 
-# あクト！ TypeScriptで始めるつらくないReact開発 第4版【② React基礎編】 を読んだ
+# りあクト！ TypeScriptで始めるつらくないReact開発 第4版【② React基礎編】 を読んだ
 
 <a href="https://oukayuka.booth.pm/items/2368019" target="_blank">
   <div align="center">
