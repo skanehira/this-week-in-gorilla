@@ -7,7 +7,7 @@ hero:
   actions:
     - theme: brand
       text: This Week
-      link: /docs/2023/0504
+      link: /docs/2023/0601
     - theme: brand
       text: Books
       link: /books/index
