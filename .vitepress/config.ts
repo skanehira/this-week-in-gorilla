@@ -47,6 +47,7 @@ export default defineConfig({
       { text: "Home", link: "/" },
       { text: "Docs", link: "/docs/2023/index" },
       { text: "Books", link: "/books/index" },
+      { text: "Camps", link: "/camps/index" },
     ],
 
     sidebar: [
@@ -58,6 +59,11 @@ export default defineConfig({
         text: "books",
         link: "/books/index.md",
         items: subItems("books"),
+      },
+      {
+        text: "camps",
+        link: "/camps/index.md",
+        items: subItems("camps"),
       },
     ],
 
