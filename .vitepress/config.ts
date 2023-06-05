@@ -45,15 +45,15 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: "Home", link: "/" },
-      { text: "Docs", link: "/docs/2023/index" },
+      { text: "Notes", link: "/notes/2023/index" },
       { text: "Books", link: "/books/index" },
       { text: "Camps", link: "/camps/index" },
     ],
 
     sidebar: [
       {
-        text: "docs",
-        items: subItems("docs"),
+        text: "notes",
+        items: subItems("notes"),
       },
       {
         text: "books",

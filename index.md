@@ -7,9 +7,9 @@ hero:
 
 features:
   - icon: 📔
-    title: This Week
-    details: 今週のメモ
-    link: /docs/2023/0601
+    title: Notes
+    details: メモ
+    link: /notes/2023/0601
   - icon: 📚
     title: Book Reports
     details: 本の感想
