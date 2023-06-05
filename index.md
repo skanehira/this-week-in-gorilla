@@ -11,11 +11,11 @@ features:
     details: メモ
     link: /notes/2023/0601
   - icon: 📚
-    title: Book Reports
-    details: 本の感想
+    title: Books
+    details: 読んだ本の感想
     link: /books/index
   - icon: ⛺
-    title: Camp Reports
+    title: Camps
     details: 開発合宿の感想
     link: /camps/index
 ---
