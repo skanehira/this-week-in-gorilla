@@ -42,6 +42,12 @@ export default defineConfig({
   base: "/this-week-in-gorilla/",
   title: "This Week in Gorilla",
   description: "This Week in Gorilla",
+  head: [
+    ["link", { rel: "icon", href: "/assets/icon/favicon.ico" }],
+    ["meta", { name: "twitter:card", content: "summary" }],
+    ["meta", { property: "og:site_name", content: "This Week in Gorilla" }],
+    ["meta", { property: "og:image", content: "https://i.gyazo.com/a6841705094db8f081221df3a7fe761c.png" }],
+  ],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
