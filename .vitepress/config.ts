@@ -41,6 +41,7 @@ function subItems(dir: string): DefaultTheme.SidebarItem[] {
 export default defineConfig({
   base: "/this-week-in-gorilla/",
   title: "This Week in Gorilla",
+  description: "This Week in Gorilla",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
