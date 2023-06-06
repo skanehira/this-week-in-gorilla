@@ -43,13 +43,14 @@ export default defineConfig({
   title: "This Week in Gorilla",
   description: "This Week in Gorilla",
   head: [
-    ["link", { rel: "icon", href: "/this-week-in-gorilla/assets/icon/favicon.ico" }],
+    ['link', { rel: 'icon', href: '/favicon.ico' }],
     ["meta", { name: "twitter:card", content: "summary" }],
     ["meta", { property: "og:site_name", content: "This Week in Gorilla" }],
     ["meta", { property: "og:title", content: "This Week in Gorilla" }],
     ["meta", { property: "og:image", content: "https://i.gyazo.com/a6841705094db8f081221df3a7fe761c.png" }],
   ],
   themeConfig: {
+    logo: "/logo.png",
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: "Home", link: "/" },
