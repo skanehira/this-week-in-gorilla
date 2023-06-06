@@ -43,7 +43,7 @@ export default defineConfig({
   title: "This Week in Gorilla",
   description: "This Week in Gorilla",
   head: [
-    ['link', { rel: 'icon', href: '/favicon.ico' }],
+    ['link', { rel: 'icon', type: 'image/png', href: '/this-week-in-gorilla/logo.png' }],
     ["meta", { name: "twitter:card", content: "summary" }],
     ["meta", { property: "og:site_name", content: "This Week in Gorilla" }],
     ["meta", { property: "og:title", content: "This Week in Gorilla" }],
