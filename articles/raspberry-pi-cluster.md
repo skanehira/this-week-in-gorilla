@@ -8,10 +8,10 @@ head:
       content: This Week in Gorilla
   - - meta
     - property: og:description
-      content: ラズパイのクラスタを組んだ
+      content: 4台のラズパイでk8sクラスタを組んだ
   - - meta
     - property: og:title
-      content: ラズパイのクラスタを組んだ
+      content: 4台のラズパイでk8sクラスタを組んだ
   - - meta
     - property: og:image
       content: https://i.gyazo.com/1d3edeb4078670beb1fac34134577173.png
