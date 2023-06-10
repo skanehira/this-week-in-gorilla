@@ -54,10 +54,11 @@ date: 2023-06-09
 
 ## ラックの組み立て
 説明書あったが、ネジの種類のラベルが貼っていなくて全然分からなかった。
-ので、公式が動画を出しているのでこちらを参考に組み立てた。
+ので、公式が[動画](https://www.youtube.com/watch?v=IsTBtLj55dU)を出しているのでこちらを参考に組み立てた。
+
 なぜかネジが足りなかったり余ったりしているが、ガタガタしていないので一旦気にしない。
 
-https://www.youtube.com/watch?v=IsTBtLj55dU
+![](../assets/img/raspberry-pi_poe_hat.png)
 
 ## OSをSSDにインストール
 OSは「Ubuntu Server 22.04.2 LTS(64bit)」を使う。
