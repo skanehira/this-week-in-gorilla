@@ -55,6 +55,7 @@ export default defineConfig({
     nav: [
       { text: "Home", link: "/" },
       { text: "Notes", link: "/notes/2023/index" },
+      { text: "Articles", link: "/articles/index" },
       { text: "Books", link: "/books/index" },
       { text: "Camps", link: "/camps/index" },
       { text: "Thoughts", link: "/thoughts/index" },
@@ -64,6 +65,10 @@ export default defineConfig({
       {
         text: "notes",
         items: subItems("notes"),
+      },
+      {
+        text: "articles",
+        items: subItems("articles"),
       },
       {
         text: "books",

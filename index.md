@@ -6,6 +6,10 @@ hero:
   name: "This Week in Gorilla"
 
 features:
+  - icon: 📰
+    title: Articles
+    details: 記事
+    link: /articles/index
   - icon: 📔
     title: Notes
     details: メモ
