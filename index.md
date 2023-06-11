@@ -13,7 +13,7 @@ features:
   - icon: 📔
     title: Notes
     details: メモ
-    link: /notes/2023/0601
+    link: /notes/2023/0602
   - icon: 📚
     title: Books
     details: 読んだ本の感想
