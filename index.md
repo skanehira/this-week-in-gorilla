@@ -22,8 +22,4 @@ features:
     title: Camps
     details: 開発合宿の感想
     link: /camps/index
-  - icon: 🤔
-    title: Thoughts
-    details: なんかの感想
-    link: /thoughts/index
 ---

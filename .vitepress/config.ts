@@ -58,7 +58,6 @@ export default defineConfig({
       { text: "Articles", link: "/articles/index" },
       { text: "Books", link: "/books/index" },
       { text: "Camps", link: "/camps/index" },
-      { text: "Thoughts", link: "/thoughts/index" },
     ],
 
     sidebar: [
@@ -79,11 +78,6 @@ export default defineConfig({
         text: "camps",
         link: "/camps/index.md",
         items: subItems("camps"),
-      },
-      {
-        text: "thoughts",
-        link: "/thoughts/index.md",
-        items: subItems("thoughts"),
       },
     ],
 
