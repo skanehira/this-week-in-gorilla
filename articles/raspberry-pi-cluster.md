@@ -75,7 +75,7 @@ OSは「Ubuntu Server 22.04.2 LTS(64bit)」を使う。
   ```
   192.168.3.15 pi1-local
   ```
-- sshの設定もする、`pi2`/`pi3`はWIFIは使わないので`pi1-local`を踏み台に接続する
+- sshの設定もする、pi2~pi4はWIFIは使わないので`pi1-local`を踏み台に接続する
   ```config
   Host pi1-local
     HostName pi1-local
@@ -114,7 +114,7 @@ apt update && apt full-upgrade
 ## ネットワークの構成
 - wlan0 はWIFI
 - eth0 有線
-  - スイッチングハブでpi1、pi2、pi3同士を接続している
+  - スイッチングハブでpi1~4同士を接続している
 
 | ホスト名 | wlan0 IP     | wlan0 デフォルトGW | eth0 IP     | eth0 GW     |
 |----------|--------------|--------------------|-------------|-------------|
@@ -149,8 +149,8 @@ network:
             - 8.8.8.8
 ```
 
-`/etc/netplan/50-cloud-init.yaml`側にデフォルトゲートウェイがないのでそれを追加
-ただ、これは書き換わる可能性があるので別ファイルで設定したいがやり方分からず一旦これで進める。
+`/etc/netplan/50-cloud-init.yaml`側にデフォルトゲートウェイがないのでそれを追加。これをしないとeth0からwlan0を通してインターネットに出れない。
+ただ、これは書き換わる可能性があるので別ファイルで設定したいが、やり方分からず一旦これで進める。
 
 ```yaml
 network:
@@ -283,8 +283,7 @@ k8sクラスタを構築するにあたり、以下の資料を読んでネッ�
 - [整理しながら理解するKubernetesネットワークの仕組み](https://speakerdeck.com/hhiroshell/kubernetes-network-fundamentals-69d5c596-4b7d-43c0-aac8-8b0e5a633fc2)を呼んでまずネットワーク周りを完全理解する。
 - [第3回 Kubernetesのネットワーク～クラスタ環境でコンテナネットワークを構築する方法～](https://www.fsi.co.jp/blog/5305/)
 
-今回はkubeadmを使ってクラスタを構築していく。
-[公式ドキュメント](https://kubernetes.io/ja/docs/setup/production-environment/tools/kubeadm/install-kubeadm/)を読みつつやっていく。
+今回はkubeadmを使うので、[公式ドキュメント](https://kubernetes.io/ja/docs/setup/production-environment/tools/kubeadm/install-kubeadm/)を読みつつ構築してく。
 
 ### 必要なポートが空いているかを確認
 [こちら](https://kubernetes.io/ja/docs/reference/networking/ports-and-protocols/)にポート一覧があるので、それらが空いているかを確認する。
@@ -461,8 +460,10 @@ root@pi1:~# vim /etc/default/kubelet
 KUBELET_EXTRA_ARGS=--cgroup-driver=systemd
 ```
 
+`kubeadm init`でクラスタを作る。PodネットワークのCIDRはflannelに合わせる。
+
 ```sh
-kubeadm init --pod-network-cidr=10.244.0.0/16 --control-plane-endpoint=pi1 --apiserver-cert-extra-sans=pi1
+root@pi1:~# kubeadm init --pod-network-cidr=10.244.0.0/16 --control-plane-endpoint=pi1 --apiserver-cert-extra-sans=pi1
 ```
 
 成功すると以下のメッセージが出る。
@@ -495,6 +496,14 @@ Then you can join any number of worker nodes by running the following on each as
 
 kubeadm join pi1:6443 --token asmgqb.45uzw6gg6y2h7jfm \
         --discovery-token-ca-cert-hash sha256:163db964c9d7f9c20f245b75b0b05ea1e6220868f844980825521257e2fbc780
+```
+
+`kubectl`を使えるようにするため、普段使うユーザで以下のコマンドを実行する。
+
+```sh
+skanehira@pi1:~# mkdir -p $HOME/.kube
+skanehira@pi1:~# sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+skanehira@pi1:~# sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
 残りのノードを同じ手順でコンテナランタイムとkubeadmなどをインストールして、`kubeadm join`する。
@@ -552,9 +561,9 @@ skanehira@pi1:~$ kubectl apply -f nginx-hello-world-deployment.yaml
 skanehira@pi1:~$ kubectl get pods
 NAME                     READY   STATUS    RESTARTS   AGE
 nginx-8466656475-c77jw   1/1     Running   0          2m36s
-skanehira@pi1:~$ curl pi2:30001
-Hello world!
 skanehira@pi1:~$ curl pi1:30001
+Hello world!
+skanehira@pi1:~$ curl pi2:30001
 Hello world!
 skanehira@pi1:~$ curl pi3:30001
 Hello world!
@@ -583,9 +592,9 @@ URLを開いてConnectを押す。
 ![](../assets/img/resp_tailscale.png)
 
 同様にssh接続するMacにも入れる。
-公式ではダウンロードするかmasを使うとあるが、それを使ってもインストールできなかったので普通にApp Storeでインストールした（権限周りが原因っぽい？）
+公式ではダウンロードするかmasを使うとあるが、masを使ってもインストールできなかったので普通にApp Storeでインストールした。（権限周りが原因っぽい？）
 
-設定が終わったら、同じVPNにいるのでsshできるようになるのでsshで接続できる。
+設定が終わったら、同じVPNにいるのでsshできるようになるので接続してみる。
 
 ```sh
 ssh pi1
