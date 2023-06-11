@@ -76,7 +76,7 @@ OSは「Ubuntu Server 22.04.2 LTS(64bit)」を使う。
   192.168.3.15 pi1-local
   ```
 - sshの設定もする、pi2~pi4はWIFIは使わないので`pi1-local`を踏み台に接続する
-  ```config
+  ```
   Host pi1-local
     HostName pi1-local
     Port 22
