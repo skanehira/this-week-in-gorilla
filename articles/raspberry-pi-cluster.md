@@ -116,13 +116,13 @@ apt update && apt full-upgrade
 - eth0 有線
   - スイッチングハブでpi1~4同士を接続している
 
-| ホスト名 | wlan0 IP     | wlan0 デフォルトGW | eth0 IP     | eth0 GW     |
-|----------|--------------|--------------------|-------------|-------------|
-| mac      | 192.168.3.4  | 192.168.3.1        | -           | -           |
-| pi1      | 192.168.3.15 | 192.168.3.1        | 192.168.1.1 | -           |
-| pi2      | -            | -                  | 192.168.1.2 | 192.168.1.1 |
-| pi3      | -            | -                  | 192.168.1.3 | 192.168.1.1 |
-| pi4      | -            | -                  | 192.168.1.4 | 192.168.1.1 |
+| ホスト名 | wlan0 IP     | wlan0 デフォルトGW | eth0 IP     | eth0 デフォルトGW |
+|----------|--------------|--------------------|-------------|-------------------|
+| mac      | 192.168.3.4  | 192.168.3.1        | -           | -                 |
+| pi1      | 192.168.3.15 | 192.168.3.1        | 192.168.1.1 | -                 |
+| pi2      | -            | -                  | 192.168.1.2 | 192.168.1.1       |
+| pi3      | -            | -                  | 192.168.1.3 | 192.168.1.1       |
+| pi4      | -            | -                  | 192.168.1.4 | 192.168.1.1       |
 
 ## ネットワーク周りの設定
 #### pi1のネットワーク設定
@@ -239,7 +239,7 @@ iptables -A FORWARD -i eth0 -o wlan0 -j ACCEPT
 iptablesの設定を永続化する[^3]
 
 ```sh
-apt install iptables-persistent
+apt install -y iptables-persistent
 netfilter-persistent save
 ```
 
@@ -580,7 +580,7 @@ https://tailscale.com/download/linux/ubuntu-2204
 
 ```sh
 root@pi1:~# curl -fsSL https://tailscale.com/install.sh | sh
-root@pi1:~# tailscale up
+root@pi1:~# tailscale up --ssh
 
 To authenticate, visit:
 
@@ -604,6 +604,43 @@ ssh pi1
 - 現時点、なぜかネットワークが激遅い(パッケージダウンロードが500KBくらい)ので、image pullとかしているとsshでのキーボード入力がままならない。
   ラズパイのWIFI自体が貧弱だからだろうか？非常に困っているので、なんとか改善したいところ。
 - 最終的にはk8sで動かしているPodをtailscaleでインターネットからアクセスできたら楽しそう。
+
+::: warning 2023/06/11 追記
+### ネットワークが遅い件
+WIFIだと遅すぎて使っていてしんどいので有線接続に変更した。
+それに伴い、eth0に2つのIPを割り当ててWIFIをすべて無効化した。
+
+```sh
+skanehira@pi1:~$ cat /etc/netplan/99-network.yaml
+network:
+    version: 2
+    ethernets:
+      eth0:
+        dhcp4: false
+        addresses:
+          - 192.168.1.1/24
+          - 192.168.3.16/24
+        routes:
+          - to: default
+            via: 192.168.3.1
+        nameservers:
+          addresses:
+            - 8.8.8.8
+            - 192.168.3.1
+        dhcp6: false
+        accept-ra: false
+        link-local: []
+```
+
+また、iptablesのNAT設定も変更した
+
+```sh
+# 既存のwlan0への変換を削除して、eth0のIP変換を行うよう
+root@pi1:~# iptables -t nat -D POSTROUTING -o wlan0 -j MASQUERADE
+root@pi1:~# iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+```
+
+:::
 
 ## さいごに
 ずっとやりたかったラズパイでk8sクラスタを組んでみた。さらにtailscaleでいつでもどこでもラズパイクラスタできた。
