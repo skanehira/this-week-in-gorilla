@@ -17,6 +17,7 @@ head:
       content: https://i.gyazo.com/1d3edeb4078670beb1fac34134577173.png
 
 date: 2023-06-09
+outline: deep
 
 ---
 
