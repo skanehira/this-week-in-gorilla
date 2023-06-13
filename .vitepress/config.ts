@@ -49,7 +49,9 @@ export default defineConfig({
     ["meta", { property: "og:title", content: "This Week in Gorilla" }],
     ["meta", { property: "og:image", content: "https://i.gyazo.com/a6841705094db8f081221df3a7fe761c.png" }],
   ],
+  lastUpdated: true,
   themeConfig: {
+    lastUpdatedText: "最終更新日",
     logo: "/logo.png",
     // https://vitepress.dev/reference/default-theme-config
     nav: [
@@ -91,6 +93,15 @@ export default defineConfig({
 
     search: {
       provider: "local",
+    },
+
+    footer: {
+      message: 'Released under the MIT License.',
+      copyright: 'Copyright © 2023 skanehira'
+    },
+
+    editLink: {
+      pattern: 'https://github.com/skanehira/this-week-in-gorilla/edit/main/:path'
     },
   },
 });
