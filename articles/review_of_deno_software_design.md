@@ -12,6 +12,8 @@ head:
   - - meta
     - property: og:image
       content: https://i.gyazo.com/d2e57d56dbc524c1c8b068a97f89cdd0.png
+
+date: 2023-06-02
 ---
 
 # Software Designで連載した「Denoで始める サーバサイドTypeScript開発」を振り返る
