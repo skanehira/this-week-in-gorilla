@@ -638,9 +638,10 @@ network:
 また、iptablesのNAT設定も変更した
 
 ```sh
-# 既存のwlan0への変換を削除して、eth0のIP変換を行うよう
+# 既存のwlan0への変換を削除して、eth0のIP変換を行うように変更
 root@pi1:~# iptables -t nat -D POSTROUTING -o wlan0 -j MASQUERADE
 root@pi1:~# iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+root@pi1:~# netfilter-persistent save
 ```
 
 :::
