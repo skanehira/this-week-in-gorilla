@@ -44,7 +44,7 @@ export default defineConfig({
   description: "This Week in Gorilla",
   head: [
     ['link', { rel: 'icon', type: 'image/png', href: '/this-week-in-gorilla/logo.png' }],
-    ["meta", { name: "twitter:card", content: "summary" }],
+    ["meta", { name: "twitter:card", content: "summary_large_image" }],
     ["meta", { property: "og:site_name", content: "This Week in Gorilla" }],
     ["meta", { property: "og:title", content: "This Week in Gorilla" }],
     ["meta", { property: "og:image", content: "https://i.gyazo.com/a6841705094db8f081221df3a7fe761c.png" }],
