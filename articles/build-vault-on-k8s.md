@@ -105,8 +105,9 @@ hello
 # `nfs-common`を入れないと以下のエラーが発生する
 # 他のノードにも同様に`nfs-common`をインストールしておく必要がある
 # mount: /mnt/pi1: bad option; for several filesystems (e.g. nfs, cifs) you might need a /sbin/mount.<type> helper program.
-root@pi2:~$ apt install nfs-common
-root@pi2:~$ mkdir /mnt/pi1
+root@pi2:~# apt install nfs-common
+root@pi2:~# mkdir /mnt/pi1
+root@pi2:~# mount -t nfs pi1:/home/nfsshare /mnt/pi1
 root@pi2:~# cat /mnt/pi1/hello.txt
 hello
 
@@ -135,9 +136,9 @@ spec:
 ```
 
 ```sh
-root@pi1:# kubectl apply -f nfs-pv.yaml
+root@pi1:~# kubectl apply -f nfs-pv.yaml
 persistentvolume/vault created
-root@pi1:# kubectl get pv
+root@pi1:~# kubectl get pv
 NAME    CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS      CLAIM   STORAGECLASS   REASON   AGE
 vault   10Gi       RWO            Retain           Available           slow                    10s
 ```
@@ -151,7 +152,7 @@ vault   10Gi       RWO            Retain           Available           slow     
 ### `Vault`のnamespaceを作る。
 
 ```sh
-root@pi1:# kubectl create namespace vault
+root@pi1:~# kubectl create namespace vault
 namespace/vault created
 ```
 
@@ -232,7 +233,7 @@ vault   vault           1               2023-06-18 23:55:33.09130381 +0900 JST  
 Podを確認する。
 
 ```sh
-root@pi1:# k get pods -n vault
+root@pi1:~# k get pods -n vault
 NAME                                    READY   STATUS    RESTARTS   AGE
 vault-0                                 0/1     Pending   0          82s
 ```
@@ -242,7 +243,7 @@ vault-0                                 0/1     Pending   0          82s
 `override-values.yaml`を変更してupgradeするときは以下のコマンドを実行する。
 
 ```sh
-root@pi1:# helm upgrade vault hashicorp/vault --namespace vault -f override-values.yaml
+root@pi1:~# helm upgrade vault hashicorp/vault --namespace vault -f override-values.yaml
 ```
 
 
@@ -253,7 +254,7 @@ root@pi1:# helm upgrade vault hashicorp/vault --namespace vault -f override-valu
 `vault operator unseal`を3回実行して、初期化を完了させる。
 
 ```sh
-root@pi1:# kubectl exec --stdin=true --tty=true vault-0 -n vault -- vault operator init
+root@pi1:~# kubectl exec --stdin=true --tty=true vault-0 -n vault -- vault operator init
 Unseal Key 1: aaaaaaaaaa
 Unseal Key 2: bbbbbbbbbb
 Unseal Key 3: cccccccccc
@@ -272,10 +273,10 @@ reconstruct the root key, Vault will remain permanently sealed!
 
 It is possible to generate new unseal keys, provided you have a quorum of
 existing unseal keys shares. See "vault operator rekey" for more information.
-root@pi1:#
-root@pi1:# kubectl exec --stdin=true --tty=true vault-0 -n vault -- vault operator unseal aaaaaaaaaa
-root@pi1:# kubectl exec --stdin=true --tty=true vault-0 -n vault -- vault operator unseal bbbbbbbbbb
-root@pi1:# kubectl exec --stdin=true --tty=true vault-0 -n vault -- vault operator unseal cccccccccc
+root@pi1:~#
+root@pi1:~# kubectl exec --stdin=true --tty=true vault-0 -n vault -- vault operator unseal aaaaaaaaaa
+root@pi1:~# kubectl exec --stdin=true --tty=true vault-0 -n vault -- vault operator unseal bbbbbbbbbb
+root@pi1:~# kubectl exec --stdin=true --tty=true vault-0 -n vault -- vault operator unseal cccccccccc
 ```
 
 コマンドを実行すると`Sealed`がfalseになるのを確認。
@@ -299,7 +300,7 @@ HA Enabled      false
 vaultのUIからログインして動いているかを確認するため`port-forward`する。
 
 ```sh
-$ kubectl port-forward vault-0 8200:8200 -n vault
+root@pi1:~# kubectl port-forward vault-0 8200:8200 -n vault
 Forwarding from 127.0.0.1:8200 -> 8200
 Forwarding from [::1]:8200 -> 8200
 ```
@@ -326,7 +327,9 @@ https://developer.hashicorp.com/vault/docs/concepts/seal
 	- キーリングは複数の鍵に分割されたキーのことらしい
 - ルートキーはUnseal keyによって暗号化されている
 - Unseal keyは分割されたキーで最低3つある
-  - これを複数人がそれぞれ保持しておくことでルートキーを取得できて、それを使って暗号化されたデータのアクセスするための暗号キーを取得できて、データにアクセスできる
+  - これを複数人がそれぞれ保持しておくことでルートキーを簡単に復元できないようにしているのがミソっぽい
+
+要はUnseal keyからルートキーを復号化して、ルートキーから暗号キーを復号化して、暗号キーからデータを復号化して…って流れのようだ。
 
 :::
 
@@ -355,8 +358,8 @@ spec:
 ```
 
 ```sh
-$ kubectl apply -f vault/service.yaml -n vault
-$ kubectl get svc -n vault
+root@pi1:~# kubectl apply -f vault/service.yaml -n vault
+root@pi1:~# kubectl get svc -n vault
 NAME             TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)             AGE
 vault            ClusterIP   10.109.107.142   <none>        8200/TCP,8201/TCP   22h
 vault-external   NodePort    10.99.149.155    <none>        8200:30820/TCP      25m
