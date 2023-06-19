@@ -47,7 +47,7 @@ export default defineConfig({
     ["meta", { name: "twitter:card", content: "summary_large_image" }],
     ["meta", { property: "og:site_name", content: "This Week in Gorilla" }],
     ["meta", { property: "og:title", content: "This Week in Gorilla" }],
-    ["meta", { property: "og:image", content: "https://i.gyazo.com/e40606bebcb469c83d372308f1840d99.png" }],
+    ["meta", { property: "og:image", content: "https://i.gyazo.com/6331356f2874b0447a987b9bcfe4e033.png" }],
   ],
   lastUpdated: true,
   themeConfig: {
