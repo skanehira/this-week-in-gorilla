@@ -2,18 +2,15 @@
 head:
   - - meta
     - name: twitter:card
-      content: summary
+      content: summary_large_image
   - - meta
     - property: og:site_name
       content: This Week in Gorilla
   - - meta
     - property: og:title
       content: おうちk8sクラスタにVaultを構築する
-  - - meta
-    - property: og:url
-      content: https://skanehira.github.io/this-week-in-gorilla/docs/2023/0503.html
 
-date: 2023-06-09
+date: 2023-06-19
 outline: deep
 
 ---
