@@ -2,16 +2,16 @@
 head:
   - - meta
     - name: twitter:card
-      content: summary_large_image
+      content: summary
   - - meta
     - property: og:site_name
       content: This Week in Gorilla
   - - meta
     - property: og:title
-      content: おうちk8sクラスタにVaultを構築する
+      content: Vaultに入門する
   - - meta
     - property: og:image
-      content: https://raw.githubusercontent.com/skanehira/this-week-in-gorilla/main/assets/img/HashiCorp_PrimaryLogo_Black_RGB.png
+      content: https://raw.githubusercontent.com/skanehira/this-week-in-gorilla/main/assets/img/HashiCorp_Icon_Black_RGB.png
 
 date: 2023-06-25
 outline: deep
