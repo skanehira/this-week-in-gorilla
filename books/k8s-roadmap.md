@@ -144,18 +144,58 @@ DBなどの永続データの正しい扱い方について主に書かれてい
 
 ### Kubernetesにおける負荷分散
 
+どのようなリソースを使ってリクエストの負荷分散をするか、について主に書かれていた。
+
+- LBによるL4負荷分散
+	- ClusterIPとNodePortはkube-proxyと連携してiptablesや[IPVS](https://www.designet.co.jp/faq/term/?id=TFZT)を使って負荷分散する
+	- LBは自分で用意するか、クラウドプロバイダ(AWSやGCPなど)が用意している物を使うか
+		- クラウドプロバイダの場合はLBの料金もかかるので要注意
+	- オンプレだとMetalLBとoctavia-ingress-controllerを使えばLBが使える
+	- 独自のLBも実装できる
+		- https://github.com/kubernetes/cloud-provider で定義されているインターフェイスを満たすようにしてあげる必要がある
+- IngressリソースによるL7負荷分散
+	- Ingress NGINX Controller などのIngress LBがある
+	- NGINXなどはPodとしてデプロイされるので、NodeSelectorやAffinityなどを使ってPodの配置を考慮する必要がある
+- Gateway APIの利用
+	- k8s公式のIngress API、現時点ではベータ版
+	- Gateway APIは以下の３つのリソースに分離されていて、各リソースは担当者(クラスタ管理者やアプリ開発)ごとに管理できるようになっていて疎結合
+		- GatewayClass
+		- Gateway
+		- xRoute(xはHTTPやgRPCなどのプロトコル)
+- 送信元のIPの固定
+	- LBで負荷分散すると送信元のIPが変わることがあるので、それを回避する方法について
+
+個人的に「なるほど！」と思ったのは以下の内容で、勉強になった。
+
+- Ingressを使う際はPodとしてデプロイされること、Podの配置を考慮すべきことについてはとても勉強になった。
+- gRPCを使った負荷分散の注意点
+	- gRPCはHTTP/2なので、単一のTCPコネクションで複数の通信という流れなので、サーバーを増やしても接続済みのコネクションを使うので負荷分散されない
+	- よって、HTTP/2に対応したLBを使う必要がある
+- LBで負荷分散すると送信元のIPが変わることがある
+
 ## 第3章：KubernetesにおけるInfrastructure as Code
 
 ## 第4章：Kubernetesにおけるアプリケーション運用
 
 ## 全体の感想
-全体通してまさに「知識の地図」だった。  
-詳細は基本的に公式のリンクを参照という感じで誘導しつつ、機能の紹介やユースケース、注意点やベストプラクティスなど、幅広く触れていた。  
+全体通して、ザーッと以下のことを感じた。総合的に大満足な書籍だった。
 
-自分のレベルではまだ知らないこと、良くわからない部分も多かったが、それらを知れたこと、それをきっかけに深掘りできたことがとても良かった。  
+- 良かった点
+	- 全体通してまさに「知識の地図」だった
+	- 詳細は基本的に公式のリンクを参照という感じで誘導しつつ、機能の紹介やユースケース、注意点やベストプラクティスなど、幅広く触れていた  
+	- 自分のレベルではまだ知らないこと、良くわからない部分も多かったが、それらを知れたこと、それをきっかけに深掘りできた
+- あると嬉しい点
+	- 全体的に図がもう少しあると嬉しいかも？
+		- 例えば、送信元IPアドレスの特定について説明するときに図があるとわかりやすかったかも？
+	- 実行例がもう少しあると嬉しいかも？
+		- マニフェストの説明があるけど、実際それを使って実行してみた結果や、説明した内容の確認方法などがあるとなおわかりやすいかも？
 
-執筆する側としても、どこまで書いたらいいのか、深掘りしすぎていないか、といったバランスの調整は中々大変だったのではないかなと想像した。
-ひとまず、著者のみなさんはお疲れ様でした。
+著者のみなさん、ありがとうございました&お疲れ様でした。
 
 ## 参考資料
 - [[Kubernetes] PodのAZ分散を実現するPod Topology Spread ConstraintsとDescheduler](https://zenn.dev/tmrekk/articles/07f30b09c26b50)
+- https://www.a10networks.co.jp/glossary/how-do-layer-4-and-layer-7-load-balancing-differ.html
+- https://kubernetes.io/docs/reference/networking/virtual-ips/
+- https://kubernetes.io/ja/docs/concepts/workloads/controllers/statefulset/
+- https://eng-blog.iij.ad.jp/archives/9998
+- https://qiita.com/ysakashita/items/ad1f13e2af99969c8e9e
