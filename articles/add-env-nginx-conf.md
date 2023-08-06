@@ -13,6 +13,7 @@ head:
 date: 2023-08-06
 outline: deep
 
+title: "nginxのconfで環境変数を使う方法"
 ---
 
 # {{ $frontmatter.title }}
