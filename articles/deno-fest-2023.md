@@ -21,6 +21,8 @@ title: "Deno Fest 2023で発表してきた"
 
 # {{ $frontmatter.title }}
 
+![](https://i.gyazo.com/534f8a74f25578d35ad14a07f80d6d87.png)
+
 [Deno Fest](https://deno-fest-2023.deno.dev)に参加&発表してきました！  
 最高でした！  
 スタックの皆さん、ありがとうございました！
