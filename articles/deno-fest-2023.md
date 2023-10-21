@@ -9,6 +9,9 @@ head:
   - - meta
     - property: og:title
       content: Deno Fest 2023で発表してきた
+  - - meta
+    - property: og:image
+      content: https://i.gyazo.com/534f8a74f25578d35ad14a07f80d6d87.png
 
 date: 2023-10-20
 outline: deep
@@ -18,10 +21,8 @@ title: "Deno Fest 2023で発表してきた"
 
 # {{ $frontmatter.title }}
 
-Deno Festに参加&発表してきました。
-最高でした
-この一言に付きます
-
+[Deno Fest](https://deno-fest-2023.deno.dev)に参加&発表してきました！  
+最高でした！  
 スタックの皆さん、ありがとうございました！
 
 ## 基調講演： deno ♥️ npm: Bridging the Gap Between Node and Deno
