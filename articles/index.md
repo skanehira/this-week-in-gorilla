@@ -1,4 +1,5 @@
 # なんかの記事
+- [VimConf 2023 Tiny に参加&発表してきた](./vimconf-2023-tiny.md)
 - [Deno Fest 2023で発表してきた](./deno-fest-2023.md)
 - [Software Designで連載した「Denoで始める サーバサイドTypeScript開発」を振り返る](./review_of_deno_software_design.md)
 - [4台のラズパイでk8sクラスタを組んだ](./raspberry-pi-cluster.md)
