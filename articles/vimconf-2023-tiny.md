@@ -9,6 +9,9 @@ head:
   - - meta
     - property: og:title
       content: VimConf 2023 Tiny に参加&発表してきた
+  - - meta
+    - property: og:image
+      content: https://i.gyazo.com/85b2b560dfc2c426b447934ae632711b.png
 
 date: 2023-11-18
 outline: deep
