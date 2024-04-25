@@ -1,3 +1,4 @@
+const footnote = require('markdown-it-footnote');
 import { defineConfig } from "vitepress";
 import { DefaultTheme } from "vitepress/types/default-theme";
 import fs from "node:fs";
@@ -104,4 +105,9 @@ export default defineConfig({
       pattern: 'https://github.com/skanehira/this-week-in-gorilla/edit/main/:path'
     },
   },
+  markdown: {
+    config: (md) => {
+      md.use(footnote)
+    }
+  }
 });
