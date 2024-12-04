@@ -1,7 +1,9 @@
-const footnote = require('markdown-it-footnote');
+import { default as footnote } from 'markdown-it-footnote';
 import { defineConfig } from "vitepress";
 import { DefaultTheme } from "vitepress/types/default-theme";
 import fs from "node:fs";
+
+console.log(footnote)
 
 const mdPattern = /\.md$/;
 function isMd(file: string) {
