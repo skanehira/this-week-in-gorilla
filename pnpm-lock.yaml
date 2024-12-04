@@ -376,8 +376,8 @@ packages:
     engines: {node: '>=10.13.0'}
     hasBin: true
 
-  rollup@3.25.1:
-    resolution: {integrity: sha512-tywOR+rwIt5m2ZAWSe5AIJcTat8vGlnPFAv15ycCrw33t6iFsXZ6mzHVFh2psSjxQPmI+xgzMZZizUAukBI4aQ==}
+  rollup@3.29.5:
+    resolution: {integrity: sha512-GVsDdsbJzzy4S/v3dqWPJ7EfvZJfCHiDqe80IyrF59LYuP+e6U1LJoUqeuqRbwAWoMNoXivMNeNAOf5E22VA1w==}
     engines: {node: '>=14.18.0', npm: '>=8.0.0'}
     hasBin: true
 
@@ -646,7 +646,7 @@ snapshots:
 
   '@types/web-bluetooth@0.0.17': {}
 
-  '@vitejs/plugin-vue@4.2.3(vite@4.3.9)(vue@3.3.4)':
+  '@vitejs/plugin-vue@4.2.3(vite@4.3.9(@types/node@20.3.1))(vue@3.3.4)':
     dependencies:
       vite: 4.3.9(@types/node@20.3.1)
       vue: 3.3.4
@@ -812,7 +812,7 @@ snapshots:
 
   prettier@2.8.8: {}
 
-  rollup@3.25.1:
+  rollup@3.29.5:
     optionalDependencies:
       fsevents: 2.3.2
 
@@ -831,18 +831,18 @@ snapshots:
 
   vite@4.3.9(@types/node@20.3.1):
     dependencies:
-      '@types/node': 20.3.1
       esbuild: 0.17.19
       postcss: 8.4.24
-      rollup: 3.25.1
+      rollup: 3.29.5
     optionalDependencies:
+      '@types/node': 20.3.1
       fsevents: 2.3.2
 
   vitepress@1.0.0-alpha.75(@algolia/client-search@4.17.2)(@types/node@20.3.1)(search-insights@2.6.0):
     dependencies:
       '@docsearch/css': 3.5.0
       '@docsearch/js': 3.5.0(@algolia/client-search@4.17.2)(search-insights@2.6.0)
-      '@vitejs/plugin-vue': 4.2.3(vite@4.3.9)(vue@3.3.4)
+      '@vitejs/plugin-vue': 4.2.3(vite@4.3.9(@types/node@20.3.1))(vue@3.3.4)
       '@vue/devtools-api': 6.5.0
       '@vueuse/core': 10.1.2(vue@3.3.4)
       body-scroll-lock: 4.0.0-beta.0
