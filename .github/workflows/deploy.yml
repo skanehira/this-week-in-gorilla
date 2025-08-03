@@ -1,6 +1,6 @@
 name: Deploy
 on:
-  workflow_dispatch: {}
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -17,33 +17,29 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: 19.3.0
+          cache: pnpm
       - uses: pnpm/action-setup@v2
         with:
           version: 8.6.0
           run_install: false
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
-      - uses: actions/cache@v3
-        name: Setup pnpm cache
+      - name: Restore VitePress cache
+        uses: actions/cache@v3
         with:
-          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          path: .vitepress/cache
+          key: ${{ runner.os }}-vitepress-cache-v1
           restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+            ${{ runner.os }}-vitepress-cache-v1
       - name: Install dependencies
         run: pnpm install
       - name: Build
         run: pnpm run docs:build
-      - uses: actions/configure-pages@v2
-      - uses: actions/upload-pages-artifact@v1
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: .vitepress/dist
       - name: Deploy
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4

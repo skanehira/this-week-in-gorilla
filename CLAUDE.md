@@ -52,4 +52,13 @@ The site configuration is in `.vitepress/config.mts`. Key features:
 ### Key Dependencies
 - VitePress 1.5.0 - Static site generator
 - markdown-it-footnote - Adds footnote support to markdown
+- satori, sharp, @resvg/resvg-js - OGP image generation
+- gray-matter - Frontmatter parsing
 - pnpm - Package manager (version specified in package.json)
+
+### OGP Image Generation
+The site automatically generates OGP images during build:
+- Images are created based on article title, category, and metadata
+- Book articles can fetch cover images from Amazon URLs or ISBNs
+- Generated images are stored in `.vitepress/dist/ogp/`
+- See `OGP_GENERATION_README.md` for detailed usage
