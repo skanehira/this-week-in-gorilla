@@ -190,20 +190,24 @@ export default defineConfig({
       {
         text: "notes",
         items: subItems("notes"),
+        collapsed: true,
       },
       {
         text: "articles",
         items: subItems("articles"),
+        collapsed: true,
       },
       {
         text: "books",
         link: "/books/index.md",
         items: subItems("books"),
+        collapsed: true,
       },
       {
         text: "camps",
         link: "/camps/index.md",
         items: subItems("camps"),
+        collapsed: true,
       },
     ],
 
