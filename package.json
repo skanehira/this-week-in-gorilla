@@ -5,7 +5,7 @@
     "@types/node": "^20.3.1",
     "@vitest/ui": "^3.2.4",
     "gray-matter": "^4.0.3",
-    "happy-dom": "^20.0.0",
+    "happy-dom": "^20.0.2",
     "prettier": "^2.8.8",
     "satori": "^0.16.2",
     "sharp": "^0.34.3",
