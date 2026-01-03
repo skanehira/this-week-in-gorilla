@@ -238,8 +238,9 @@ export default defineConfig({
     }
   },
 
+
   // ビルド後にキャッシュをコピー
-  async buildEnd(_: SiteConfig) {
+  async buildEnd(config: SiteConfig) {
     // OGP画像を生成
     await generateAllOgpImages();
 
@@ -322,6 +323,7 @@ export default defineConfig({
     }
   }
 });
+
 
 // ドメインを動的に検出する関数
 function detectDomain(): string {

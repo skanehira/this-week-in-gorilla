@@ -2,3 +2,8 @@
 .vitepress/dist
 .vitepress/fonts
 node_modules
+
+# Generated data files
+articles/articles-data.json
+books/books-data.json
+camps/camps-data.json

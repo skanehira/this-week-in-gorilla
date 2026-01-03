@@ -1,0 +1,203 @@
+/* Custom styles for article cards and lists */
+
+/* Fix navbar background extending full width */
+.VPNav {
+  background-color: var(--vp-nav-bg-color);
+}
+
+.VPNavBar {
+  background-color: var(--vp-nav-bg-color);
+}
+
+.VPNavBar .container {
+  background-color: var(--vp-nav-bg-color);
+}
+
+/* Enhanced CSS variables for better theming */
+:root {
+  --article-card-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --article-card-shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.15);
+  --article-card-radius: 12px;
+  --article-card-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --grid-gap: 24px;
+  --grid-gap-mobile: 20px;
+}
+
+.dark {
+  --article-card-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --article-card-shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* Global improvements for article pages */
+.VPContent {
+  padding-top: 0;
+}
+
+/* Ensure proper spacing in VitePress content */
+.vp-doc .article-list {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Override VitePress container max-width for article lists */
+.vp-doc .container:has(.article-list) {
+  max-width: 1400px;
+}
+
+/* Smooth scrolling for better UX */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus styles for accessibility */
+.read-more-button:focus,
+.pagination-button:focus,
+.category-filter:focus,
+.sort-filter:focus {
+  outline: 2px solid var(--vp-c-brand);
+  outline-offset: 2px;
+}
+
+/* Loading state styles */
+.articles-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  color: var(--vp-c-text-2);
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--vp-c-border);
+  border-top: 3px solid var(--vp-c-brand);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Improved mobile typography */
+@media (max-width: 768px) {
+  .list-title {
+    line-height: 1.2;
+  }
+  
+  .card-title {
+    line-height: 1.3;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .article-card {
+    border-width: 2px;
+  }
+  
+  .read-more-button {
+    border-width: 2px;
+  }
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .article-card:hover {
+    transform: none;
+  }
+  
+  .card-image img {
+    transform: none !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  .filter-controls,
+  .pagination,
+  .read-more-button {
+    display: none;
+  }
+  
+  .article-card {
+    break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+  
+  .articles-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Custom scrollbar for webkit browsers */
+.article-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.article-list::-webkit-scrollbar-track {
+  background: var(--vp-c-bg-alt);
+  border-radius: 4px;
+}
+
+.article-list::-webkit-scrollbar-thumb {
+  background: var(--vp-c-border);
+  border-radius: 4px;
+}
+
+.article-list::-webkit-scrollbar-thumb:hover {
+  background: var(--vp-c-text-3);
+}
+
+/* Improve link hover states */
+a.read-more-button {
+  position: relative;
+  overflow: hidden;
+}
+
+a.read-more-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+a.read-more-button:hover::before {
+  left: 100%;
+}
+
+/* Category badge improvements */
+.card-category {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-category::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.article-card:hover .card-category::before {
+  opacity: 1;
+}

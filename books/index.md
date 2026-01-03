@@ -1,3 +1,17 @@
-# 読んだ本の感想
-- [りあクト！ TypeScriptで始めるつらくないReact開発 第4版【② React基礎編】](./riakuto4pt2-221101.md)
-- [「Kubernetesの知識地図」を読んだ](./k8s-roadmap.md)
+---
+title: 読んだ本
+layout: page
+---
+
+<script setup>
+import ArticleList from '../.vitepress/components/ArticleList.vue'
+import articles from './books-data.json'
+
+</script>
+
+<ArticleList 
+  title="読んだ本" 
+  description="読んだ本の感想やレビューをまとめています。"
+  :articles="articles" 
+  :items-per-page="12" 
+/>

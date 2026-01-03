@@ -1,17 +1,17 @@
 ---
-title: 開発合宿
+title: メモ
 layout: page
 ---
 
 <script setup>
 import ArticleList from '../.vitepress/components/ArticleList.vue'
-import articles from './camps-data.json'
 
+const articles = []
 </script>
 
 <ArticleList 
-  title="開発合宿" 
-  description="開発合宿での体験や学びを記録しています。"
+  title="メモ" 
+  description="日々の学習メモや気づきを残しています。"
   :articles="articles" 
   :items-per-page="12" 
 />

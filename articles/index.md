@@ -1,8 +1,17 @@
-# なんかの記事
-- [VimConf 2023 Tiny に参加&発表してきた](./vimconf-2023-tiny.md)
-- [Deno Fest 2023で発表してきた](./deno-fest-2023.md)
-- [Software Designで連載した「Denoで始める サーバサイドTypeScript開発」を振り返る](./review_of_deno_software_design.md)
-- [4台のラズパイでk8sクラスタを組んだ](./raspberry-pi-cluster.md)
-- [おうちk8sクラスタにVaultを構築する](./build-vault-on-k8s.md)
-- [Vaultに入門する](./getting_started_with_vault.md)
-- [ラズパイのsshサーバー設定](./setup-ssh-respberry-pi.md)
+---
+title: 技術記事
+layout: page
+---
+
+<script setup>
+import ArticleList from '../.vitepress/components/ArticleList.vue'
+import articles from './articles-data.json'
+
+</script>
+
+<ArticleList 
+  title="技術記事" 
+  description="プログラミングや技術に関する記事を書いています。"
+  :articles="articles" 
+  :items-per-page="12" 
+/>
