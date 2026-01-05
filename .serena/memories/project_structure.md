@@ -7,7 +7,7 @@
 │   ├── config.mts      # Main VitePress configuration
 │   ├── ogp-generator.ts # OGP image generation logic
 │   ├── ogp-generator.test.ts # Tests for OGP generator
-│   └── profile.jpg     # User avatar for OGP images
+│   └── profile.png     # User avatar for OGP images
 ├── .github/
 │   └── workflows/
 │       └── deploy.yml  # GitHub Actions deployment workflow

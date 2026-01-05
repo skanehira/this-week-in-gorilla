@@ -31,7 +31,7 @@ The site automatically generates Open Graph Protocol (OGP) images for social med
   - Location in `/books/` directory
   - Presence of bookUrl, isbn, bookTitle in frontmatter
 - Fetches external images as data URLs to avoid CORS
-- Uses profile.jpg for author avatar
+- Uses profile.png for author avatar
 
 ## Cache Strategy
 - GitHub Actions caches entire `.vitepress/cache` directory
