@@ -34,7 +34,7 @@ async function loadFont() {
 async function loadLocalImageFile(): Promise<string> {
   const profilePath = path.join(process.cwd(), ".vitepress", "profile.png");
   const imageBuffer = await fs.readFile(profilePath);
-  return `data:image/jpeg;base64,${imageBuffer.toString("base64")}`;
+  return `data:image/png;base64,${imageBuffer.toString("base64")}`;
 }
 
 export async function generateOgpImage(options: OgpOptions): Promise<Buffer> {
