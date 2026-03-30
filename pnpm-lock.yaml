@@ -28,8 +28,8 @@ importers:
         specifier: ^4.0.3
         version: 4.0.3
       happy-dom:
-        specifier: ^20.8.8
-        version: 20.8.8
+        specifier: ^20.8.9
+        version: 20.8.9
       prettier:
         specifier: ^2.8.8
         version: 2.8.8
@@ -50,7 +50,7 @@ importers:
         version: 1.5.0(@algolia/client-search@5.15.0)(@types/node@20.3.1)(postcss@8.4.49)(search-insights@2.6.0)(typescript@5.9.2)
       vitest:
         specifier: ^3.2.4
-        version: 3.2.4(@types/node@20.3.1)(@vitest/ui@3.2.4)(happy-dom@20.8.8)
+        version: 3.2.4(@types/node@20.3.1)(@vitest/ui@3.2.4)(happy-dom@20.8.9)
 
 packages:
 
@@ -1149,8 +1149,8 @@ packages:
     resolution: {integrity: sha512-5v6yZd4JK3eMI3FqqCouswVqwugaA9r4dNZB1wwcmrD02QkV5H0y7XBQW8QwQqEaZY1pM9aqORSORhJRdNK44Q==}
     engines: {node: '>=6.0'}
 
-  happy-dom@20.8.8:
-    resolution: {integrity: sha512-5/F8wxkNxYtsN0bXfMwIyNLZ9WYsoOYPbmoluqVJqv8KBUbcyKZawJ7uYK4WTX8IHBLYv+VXIwfeNDPy1oKMwQ==}
+  happy-dom@20.8.9:
+    resolution: {integrity: sha512-Tz23LR9T9jOGVZm2x1EPdXqwA37G/owYMxRwU0E4miurAtFsPMQ1d2Jc2okUaSjZqAFz2oEn3FLXC5a0a+siyA==}
     engines: {node: '>=20.0.0'}
 
   hast-util-to-html@9.0.3:
@@ -2200,7 +2200,7 @@ snapshots:
       sirv: 3.0.1
       tinyglobby: 0.2.14
       tinyrainbow: 2.0.0
-      vitest: 3.2.4(@types/node@20.3.1)(@vitest/ui@3.2.4)(happy-dom@20.8.8)
+      vitest: 3.2.4(@types/node@20.3.1)(@vitest/ui@3.2.4)(happy-dom@20.8.9)
 
   '@vitest/utils@3.2.4':
     dependencies:
@@ -2517,7 +2517,7 @@ snapshots:
       section-matter: 1.0.0
       strip-bom-string: 1.0.0
 
-  happy-dom@20.8.8:
+  happy-dom@20.8.9:
     dependencies:
       '@types/node': 20.3.1
       '@types/whatwg-mimetype': 3.0.2
@@ -2953,7 +2953,7 @@ snapshots:
       - typescript
       - universal-cookie
 
-  vitest@3.2.4(@types/node@20.3.1)(@vitest/ui@3.2.4)(happy-dom@20.8.8):
+  vitest@3.2.4(@types/node@20.3.1)(@vitest/ui@3.2.4)(happy-dom@20.8.9):
     dependencies:
       '@types/chai': 5.2.2
       '@vitest/expect': 3.2.4
@@ -2981,7 +2981,7 @@ snapshots:
     optionalDependencies:
       '@types/node': 20.3.1
       '@vitest/ui': 3.2.4(vitest@3.2.4)
-      happy-dom: 20.8.8
+      happy-dom: 20.8.9
     transitivePeerDependencies:
       - less
       - lightningcss
